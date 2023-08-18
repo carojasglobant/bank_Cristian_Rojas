@@ -15,19 +15,21 @@ public class Client {
 
     LocalDate dateofCreation;
 
-    public Client( String fullName, String username, String password){
+    public Client( String fullName, String username, String password, float balance){
         this.fullName = fullName;
         this.username = username;
         this.password = password;
         this.dateofCreation = LocalDate.now();
         this.accountNumber = generarCuenta();
+        this.balance = balance;
     }
 
     public void mostrarInformacionCliente(){
         System.out.println("Fullname: " + this.fullName);
         System.out.println("Username: " + this.username);
+        System.out.println("Balance: " + this.balance);
         System.out.println("Account number: " + this.accountNumber);
-        System.out.println("Creation date: " + this.dateofCreation);
+        System.out.println("Creation date: " + this.dateofCreation + "\n");
     }
 
     public String generarCuenta(){
