@@ -11,12 +11,11 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         // Clients list definition
-        List<Client> listaClientes = new ArrayList<Client>();
+        List<Client> listaClientes = new ArrayList<>();
 
         // retrieve the clients from clients.txt
         try {
             Scanner in = new Scanner(new FileReader("C:\\Users\\ca.rojas\\Desktop\\restAssured\\Bank\\src\\clients.txt"));
-            StringBuilder sb = new StringBuilder();
             while(in.hasNext()) {
                 String name = in.next();
                 String username = in.next();
@@ -38,7 +37,7 @@ public class Main {
             int option = scanner.nextInt();
             switch (option){
                 case 1:
-                    if(listaClientes.size()>0){
+                    if(!listaClientes.isEmpty()){
                         for (Client cliente: listaClientes ){
                             cliente.mostrarInformacionCliente();
                         }
