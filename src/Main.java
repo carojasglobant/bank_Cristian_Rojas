@@ -38,8 +38,12 @@ public class Main {
             int option = scanner.nextInt();
             switch (option){
                 case 1:
-                    for (Client cliente: listaClientes ){
-                        cliente.mostrarInformacionCliente();
+                    if(listaClientes.size()>0){
+                        for (Client cliente: listaClientes ){
+                            cliente.mostrarInformacionCliente();
+                        }
+                    } else {
+                        System.out.println("Client list is empty");
                     }
                     break;
                 case 2:
@@ -79,7 +83,7 @@ public class Main {
 
 
                     boolean sessionIniciada = true;
-                    if(indexOfUser>0 && listaClientes.get(indexOfUser).logInIntoAccount(usernameLogIn,passwordLogIn)){
+                    if(indexOfUser>=0 && listaClientes.get(indexOfUser).logInIntoAccount(usernameLogIn,passwordLogIn)){
                         while(sessionIniciada) {
                             interfazLogIn(listaClientes.get(indexOfUser).fullName);
                             int optionLogged = scanner.nextInt();
@@ -89,6 +93,7 @@ public class Main {
                                     float montoadd = scanner.nextFloat();
                                     listaClientes.get(indexOfUser).addMoney(montoadd);
                                     System.out.println("Succesful!");
+                                    serializeObjects(listaClientes);
                                     break;
                                 case 2:
                                     System.out.println("Account number: ");
@@ -164,5 +169,22 @@ public class Main {
         System.out.println("2. Transfer money");
         System.out.println("3. Withdraw money");
         System.out.println("4. Log out");
+    }
+    public static void serializeObjects(List<Client> listaClients){
+        try {
+            //delete contents
+            FileWriter writer = new FileWriter("src/clients.txt");
+            writer.write("");
+            writer.close();
+           for(Client client: listaClients) {
+               FileWriter myWriter = new FileWriter("src/clients.txt", true);
+               myWriter.write(System.getProperty("line.separator"));
+               myWriter.write(client.getFullName() + " " + client.getUsername() + " " + client.getPassword() + " " + client.getBalance());
+               myWriter.close();
+           }
+        } catch (IOException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
     }
 }

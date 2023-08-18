@@ -76,5 +76,17 @@ public class Client {
     public String getAccountNumber() {
         return accountNumber;
     }
+
+    public String getFullName() {
+        return fullName;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public Double getBalance() {
+        return balance;
+    }
 }
 
