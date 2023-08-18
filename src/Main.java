@@ -112,6 +112,7 @@ public class Main {
                                     if(listaClientes.get(indexOfUser).transferMoney(moneyToTransfer)){
                                         listaClientes.get(indexOfUserToTransfer).addMoney(moneyToTransfer);
                                         System.out.println("Succesful!");
+                                        serializeObjects(listaClientes);
                                     } else {
                                         System.out.println("User not found");
                                     }
@@ -121,6 +122,7 @@ public class Main {
                                     Double moneyToWithdraw = scanner.nextDouble();
                                     if(listaClientes.get(indexOfUser).withDraw(moneyToWithdraw)){
                                         System.out.println("Successful");
+                                        serializeObjects(listaClientes);
                                     } else {
                                         System.out.println("Insuficciente funds");
                                         System.out.println("Check and try it again");
@@ -128,6 +130,7 @@ public class Main {
                                     break;
                                 case 4:
                                     System.out.println("You are out\n");
+                                    serializeObjects(listaClientes);
                                     sessionIniciada=false;
 
                                     break;
@@ -143,6 +146,7 @@ public class Main {
                     }
                     break;
                 case 4:
+                    serializeObjects(listaClientes);
                     System.exit(0);
                     break;
                 default:
