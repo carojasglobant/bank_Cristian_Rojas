@@ -10,12 +10,12 @@ public class Client {
     String password;
 
     // Account information
-    float balance;
+    Double balance;
     String accountNumber;
 
     LocalDate dateofCreation;
 
-    public Client( String fullName, String username, String password, float balance){
+    public Client( String fullName, String username, String password, Double balance){
         this.fullName = fullName;
         this.username = username;
         this.password = password;
@@ -40,6 +40,41 @@ public class Client {
             account = account + rand_int;
         }
         return account;
+    }
+
+    public boolean logInIntoAccount(String username, String password){
+        return  username.equals(this.username) && password.equals(this.password);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void addMoney(Float monto){
+        this.balance = this.balance +monto;
+    }
+    public boolean transferMoney(Float monto){
+        if(monto<=this.balance-100){
+            this.balance = this.balance - 100 - monto;
+            return true;
+        } else {
+            return false;
+        }
+    }
+    public boolean withDraw(Double monto){
+        if(monto  <= this.balance-200 && monto < 1000){
+            this.balance = this.balance - monto - 200;
+            return true;
+        } else if(monto <= this.balance-200-0.15*monto && monto >= 1000){
+            this.balance = this.balance-monto-200-0.15*monto;
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
     }
 }
 
